@@ -1,5 +1,6 @@
-import './globals.css';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import "./globals.css";
+
+
 export const metadata = {
   title: 'Admin Explora',
   description: 'Admin panel for managing Explora content',
@@ -7,8 +8,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="es">
+      <body >{children}</body>
     </html>
   )
 }
