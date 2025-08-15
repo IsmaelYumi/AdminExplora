@@ -6,6 +6,7 @@ export async function GET(req) {
     return new Response(JSON.stringify({ error: "Missing code" }), { status: 400 });
   }
 
+  // Intercambio del code por access_token
   const tokenResponse = await fetch(`${process.env.NEXT_PUBLIC_CANVAS_BASE_URL}/login/oauth2/token`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -20,6 +21,14 @@ export async function GET(req) {
 
   const tokenData = await tokenResponse.json();
 
-  // Aquí podrías guardar el token en una cookie segura
-  return new Response(JSON.stringify(tokenData), { status: 200 });
+  // Crear la respuesta y guardar cookies seguras
+  const response = new Response(null, { status: 302 }); // 302 redirect
+  response.headers.set('Location', '/crear-curso');     // redirige a la página principal
+
+  // Guardar access_token y refresh_token en cookies HttpOnly
+  response.headers.append('Set-Cookie', `canvas_token=${tokenData.access_token}; HttpOnly; Path=/; SameSite=Lax`);
+  response.headers.append('Set-Cookie', `canvas_refresh=${tokenData.refresh_token}; HttpOnly; Path=/; SameSite=Lax`);
+
+  return response;
 }
+
