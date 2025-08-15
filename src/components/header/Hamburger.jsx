@@ -9,11 +9,14 @@ export default function HamburgerDrawer({ items }) {
   const lastRef  = useRef(null);
   const triggerRef = useRef(null);
 
+  const loginUrl = `${process.env.NEXT_PUBLIC_CANVAS_BASE_URL}/login/oauth2/auth?client_id=${process.env.NEXT_PUBLIC_CANVAS_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_CANVAS_REDIRECT_URI}`;
+
   const menuItems = items || [
     { label: "Crear Planificación", href: "#" },
     { label: "Planificaciones",    href: "#" },
     { label: "Unidades Educativas", href: "#" },
     { label: "Docentes",            href: "#" },
+    { label: "Iniciar sesión con Canvas", href: loginUrl } // Nuevo ítem
   ];
 
   useEffect(() => setMounted(true), []);

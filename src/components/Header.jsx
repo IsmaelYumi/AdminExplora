@@ -1,5 +1,5 @@
 "use client";
-import HamburgerDrawer from "./header/hamburger";
+import HamburgerDrawer from "./header/Hamburger";
 
 export default function Header() {
   return (
