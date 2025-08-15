@@ -16,7 +16,6 @@ export default function HamburgerDrawer({ items }) {
     { label: "Planificaciones",    href: "#" },
     { label: "Unidades Educativas", href: "#" },
     { label: "Docentes",            href: "#" },
-    { label: "Iniciar sesión con Canvas", href: loginUrl } // Nuevo ítem
   ];
 
   useEffect(() => setMounted(true), []);
