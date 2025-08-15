@@ -420,3 +420,4 @@ FodyWeavers.xsd
 .next/*
 dist/*
 
+package-lock.json
