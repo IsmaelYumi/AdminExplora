@@ -79,12 +79,12 @@ return(
           </div>
             <div className='flex items-center justify-center w-full mt-2'>
              <Button type="submit" loading={loading} className="w-full flex justify-center items-center py-2.5 px-4 bg-green-600 hover:bg-green-700 text-white transition-colors" >
-              Inciar sesion
+              Iniciar sesion
           </Button>
             </div>
           <div className='flex items-center justify-center w-full mt-2'>
              <Button type="submit" className="w-full flex justify-center items-center py-2.5 px-4 bg-green-600 hover:bg-green-700 text-white transition-colors" onClick={Logueo}>
-              Inciar sesion con canvas
+              Iniciar sesion con canvas
           </Button>
             </div>         
         </form>

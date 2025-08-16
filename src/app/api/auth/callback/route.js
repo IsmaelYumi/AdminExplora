@@ -23,7 +23,7 @@ export async function GET(req) {
 
   // Crear la respuesta y guardar cookies seguras
   const response = new Response(null, { status: 302 }); // 302 redirect
-  response.headers.set('Location', '/crear-curso');     // redirige a la página principal
+  response.headers.set('Location', '/Dashboard');     // redirige a la página principal
 
   // Guardar access_token y refresh_token en cookies HttpOnly
   response.headers.append('Set-Cookie', `canvas_token=${tokenData.access_token}; HttpOnly; Path=/; SameSite=Lax`);

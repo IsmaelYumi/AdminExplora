@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Card from "../components/dashboard/Card";
+import Header from "../../components/Header";
+import Card from "../../components/dashboard/Card";
 
 export default function Page() {
   return (
@@ -25,7 +25,7 @@ export default function Page() {
             [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]
           "
         >
-          <Card color="bg-purple-card" title="Crear" subtitle="Planificación" iconName="plus-lg" />
+          <Card color="bg-purple-card" title="Crear" subtitle="Planificacion" iconName="plus-lg"/>
           <Card color="bg-orange-card" title="Planificaciones" iconName="journal-text" />
           <Card color="bg-brick-card"  title="Unidades" subtitle="Educativas" iconName="house-door-fill" />
           <Card color="bg-green-card"  title="Docentes" iconName="person-fill" />
