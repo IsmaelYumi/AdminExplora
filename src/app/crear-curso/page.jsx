@@ -1,17 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CrearCurso() {
-  // Datos de los steps
   const [jornada, setJornada] = useState("");
   const [grado, setGrado] = useState("");
   const [materias, setMaterias] = useState([]);
   const [paralelo, setParalelo] = useState("");
   const [profesor, setProfesor] = useState("");
-
+  const [profesoresDisponibles, setProfesoresDisponibles] = useState([]);
   const [resultado, setResultado] = useState(null);
 
-  // Materias disponibles según grado (ejemplo)
+  // Materias disponibles según grado
   const materiasPorGrado = {
     "Inicial 1": ["Arte", "Música", "Matemáticas"],
     "Inicial 2": ["Arte", "Música", "Ciencias"],
@@ -20,11 +19,20 @@ export default function CrearCurso() {
     "3ro EGB": ["Matemáticas", "Lengua", "Historia"],
   };
 
-  // Paralelos disponibles
   const paralelos = ["A", "B", "C"];
 
-  // Profesores (ejemplo)
-  const profesoresDisponibles = ["Juan Pérez", "María Gómez", "Luis Torres"];
+  useEffect(() => {
+    async function fetchProfesores() {
+      try {
+        const res = await fetch("/api/profesores"); // endpoint que devuelve profesores
+        const data = await res.json();
+        setProfesoresDisponibles(data); // esperar lista [{id, name}, ...]
+      } catch (err) {
+        console.error("Error obteniendo profesores:", err);
+      }
+    }
+    fetchProfesores();
+  }, []);
 
   const handleMateriaChange = (e) => {
     const value = e.target.value;
@@ -36,12 +44,12 @@ export default function CrearCurso() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Payload para Canvas
+    // Payload que se enviará al backend
     const payload = {
       name: `${grado} ${paralelo} - ${jornada}`,
-      code: `${grado}${paralelo}`.replace(/\s+/g, ""),
+      course_code: `${grado}${paralelo}`.replace(/\s+/g, ""),
       materias,
-      profesor,
+      profesor_id: profesor, // enviamos el id del profesor
       default_view: "modules",
     };
 
@@ -117,7 +125,7 @@ export default function CrearCurso() {
           <select value={profesor} onChange={(e) => setProfesor(e.target.value)} required>
             <option value="">Selecciona profesor</option>
             {profesoresDisponibles.map((prof) => (
-              <option key={prof} value={prof}>{prof}</option>
+              <option key={prof.id} value={prof.id}>{prof.name}</option>
             ))}
           </select>
         </div>
